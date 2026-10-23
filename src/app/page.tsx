@@ -1,23 +1,14 @@
-import { getCategories, getProducts } from "@/lib/api";
-import { formatPct, formatPrice, formatUnit, getDir } from "@/lib/format";
+import Hero from "@/components/Hero";
 
-export default async function Home() {
-  const [products, categories] = await Promise.all([
-    getProducts(),
-    getCategories(),
-  ]);
-
+export default function Home() {
   return (
-    <main className="space-y-2 p-8">
-      <p>
-        পণ্য: {products.length}, ক্যাটাগরি: {categories.length}
-      </p>
-      {products.slice(0, 6).map((p) => (
-        <p key={p.id}>
-          {p.image} {p.nameBn} — {formatPrice(p.today)} ({formatUnit(p.unit)}){" "}
-          {getDir(p)} {formatPct(p.change.pct)}
-        </p>
-      ))}
+    <main className="mx-auto max-w-6xl space-y-10 px-4 py-6 sm:px-6">
+      <Hero />
+
+      
+      <section id="সব-পণ্য" className="scroll-mt-6">
+        <h2 className="text-xl font-bold">সব পণ্য</h2>
+      </section>
     </main>
   );
 }
